@@ -1,0 +1,50 @@
+@page {
+	size: A4;
+	margin: .5cm;
+}
+
+html, body {
+	height: auto;
+}
+
+body {
+	margin: .5cm 1cm 1cm;
+}
+
+.wrapper,
+.main,
+.all-songs-report h1 {
+	margin: 0;
+}
+
+nav.header {
+	background: none;
+	box-shadow: none;
+}
+	nav.header h2 {
+		float: none;
+		text-align: center;
+		font-size: 1em;
+		text-shadow: none;
+	}
+	nav.header h2 a::after {
+		content: ".com"; /** @debt This demands the text to be "neo-transposer" exactly */
+	}
+	nav.header a {
+		color: #D32F2F;
+		border: 1px solid #D32F2F;
+		padding: .2em .5em;
+	}
+	nav.header .user {
+		display: none;
+	}
+
+footer,
+.all-songs-report .report-actions,
+.all-songs-report .toggle-transpositions {
+	display: none;
+}
+
+.main {
+	width: 100%;
+}
