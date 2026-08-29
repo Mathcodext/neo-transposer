@@ -35,7 +35,7 @@ return [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
             'host' => env('NT_DB_HOST', 'host.docker.internal'),
-            'port' => '3306',
+            'port' => env('NT_DB_PORT', '3306'),
             'database' => env('NT_DB_DATABASE'),
             'username' => env('NT_DB_USER'),
             'password' => env('NT_DB_PASSWORD'),
