@@ -24,6 +24,7 @@ abstract class MysqlRepository
             self::$dbal = DriverManager::getConnection([
                 'driver'   => 'pdo_mysql',
                 'host'     => config('database.connections.mysql.host'),
+                'port'     => config('database.connections.mysql.port'),
                 'user'     => config('database.connections.mysql.username'),
                 'password' => config('database.connections.mysql.password'),
                 'dbname'   => config('database.connections.mysql.database'),
