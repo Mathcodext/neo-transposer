@@ -1,5 +1,6 @@
 -- SQL Insert Script for French Songbook (id_book = 6)
 -- Generated for NeoTransposer
+SET NAMES utf8mb4;
 
 DELETE FROM `song_chord` WHERE `id_song` >= 1301 AND `id_song` <= 1550;
 DELETE FROM `song` WHERE `id_book` = 6;
