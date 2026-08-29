@@ -287,13 +287,21 @@ footer {
 			}
 
 		.books li a {
-			display: block;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
 			padding: .5em .5em;
 		}
 			.books li a small {
 				display: block;
 				font-size: .7em;
 				color: #333;
+			}
+			.books li a .book-song-count {
+				font-size: .75em;
+				color: #666;
+				white-space: nowrap;
+				margin-left: 1em;
 			}
 
 /*
@@ -2115,6 +2123,10 @@ td.red {
 		background-size: auto auto;
 		height: auto;
 		padding: 0;
+	}
+	.page-login.lang-fr .mkt {
+		background-image: url(img/mkt-fr-600x315.jpg);
+		background-size: cover;
 	}
 		.page-login .mkt h2 {
 			padding: .5em .2em;

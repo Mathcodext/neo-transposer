@@ -6,6 +6,7 @@
     "Log-out": "Déconnexion",
     "Neo-Transposer automatically transposes the songs of the Neocatechumenal Way for you, so they fit your voice perfectly.": "Neo-Transposer transpose automatiquement pour vous les chants du Chemin Néocatéchuménal, afin qu'ils s'adaptent parfaitement à votre voix.",
     "Transpose chords": "Transposer les accords",
+    ":count songs": ":count chants",
 
     "/* LOGIN */": "",
     "Transpose the songs of the Neocatechumenal Way · Neo-Transposer": "Transposer les chants du Chemin Néocatéchuménal · Neo-Transposer",
@@ -42,8 +43,8 @@
     "Choose language": "Choisir la langue",
 
     "/* Book */": "",
-    "Songs of the Neocatechumenal Way in :lang": "Paris 2023 en :lang",
-    "Songs of the Neocatechumenal Way": "Paris 2023",
+    "Songs of the Neocatechumenal Way in :lang": "Chants du Chemin Néocatéchuménal en :lang",
+    "Songs of the Neocatechumenal Way": "Chants du Chemin Néocatéchuménal",
     "Songs and psalms of the Neocatechumenal Way in :lang. With Neo-Transposer you can transpose them automatically so they will fit your own voice.": "Chants et psaumes du Chemin Néocatéchuménal en :lang. Avec Neo-Transposer, transposez-les automatiquement pour qu'ils s'adaptent à votre voix.",
     "Other languages": "Autres langues",
     "You have reported the proposed transposition as valid": "Vous avez indiqué que cette transposition convient à votre voix",
@@ -206,5 +207,22 @@
     "The administrator has been notified and will try to solve this as soon as possible.": "L'administrateur a été prévenu et s'efforcera de la résoudre au plus vite.",
 
     "/* External login finish */": "",
-    "Login succesful - returning to the app.": "Connexion réussie - retour à l'application."
+    "Login succesful - returning to the app.": "Connexion réussie - retour à l'application.",
+
+    "/* SONG MANAGER */": "",
+    "Song manager": "Gestionnaire de chants",
+    "Add a new song": "Ajouter un nouveau chant",
+    "Existing songs": "Chants enregistrés",
+    "Delete": "Supprimer",
+    "Song added successfully": "Chant ajouté avec succès !",
+    "Song deleted successfully": "Chant supprimé avec succès !",
+    "Book:": "Recueil :",
+    "Title:": "Titre :",
+    "Page:": "Page :",
+    "Lowest note:": "Note la plus basse :",
+    "Highest note:": "Note la plus haute :",
+    "People Lowest note:": "Note la plus basse (assemblée) :",
+    "People Highest note:": "Note la plus haute (assemblée) :" ,
+    "First chord = key": "Premier accord = Tonalité",
+    "Chords:": "Accords :"
 }

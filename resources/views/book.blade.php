@@ -55,7 +55,7 @@
     @endif
 
     {{ $current_book->langName() }}
-    <small>{{ $current_book->details() }}</small>
+    <small>{{ $current_book->details() }} · @lang(':count songs', ['count' => $current_book->songCount()])</small>
 </h1>
 
 @if (session('user')->isLoggedIn())
