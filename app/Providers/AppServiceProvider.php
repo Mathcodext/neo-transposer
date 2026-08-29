@@ -84,6 +84,12 @@ class AppServiceProvider extends ServiceProvider
             \Illuminate\Support\Facades\URL::forceScheme('https');
         }
 
+        if (config('app.env') === 'production' || !config('app.debug')) {
+            if (class_exists(\Barryvdh\Debugbar\Facades\Debugbar::class)) {
+                \Barryvdh\Debugbar\Facades\Debugbar::disable();
+            }
+        }
+
         View::share('cssFile', config('app.debug')
             ? 'style.css?nocache=' . time()
             : 'compiled-' . config('nt.css_cache') . '.css');
