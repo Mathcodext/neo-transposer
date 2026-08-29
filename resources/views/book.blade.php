@@ -60,7 +60,7 @@
 
 @if (session('user')->isLoggedIn())
 <div class="quick-search">
-    <input type="text" id="quick-search" placeholder="@lang('Quick search a song')">
+    <input type="search" id="quick-search" placeholder="@lang('Quick search a song')" enterkeyhint="search" autocorrect="off" autocapitalize="none" spellcheck="false">
 </div>
 @endif
 
@@ -217,6 +217,10 @@
         });
     }
 
+    function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
     function applyDiacritics(str, which) {
         which = which || 'default';
         var changes = diacriticsApplyMap[which];
@@ -229,9 +233,10 @@
     var NTBook = {
 
         initializeQuickSearch: function() {
-            var eQuickSearch = document.getElementById("quick-search"),
-                eSongList = document.getElementsByClassName("song-index")[0],
-                isTouchScreen = window.navigator.msMaxTouchPoints || ('ontouchstart' in document.documentElement),
+            var eQuickSearch = document.getElementById("quick-search");
+            if (!eQuickSearch) return;
+
+            var eSongList = document.getElementsByClassName("song-index")[0],
                 aElementsToHide = $(".link-all-report").add(".tip").add("footer"),
                 isItalian = document.getElementsByTagName("html")[0].lang == "it";
 
@@ -244,72 +249,96 @@
                 return this.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
             };
 
-            $(eQuickSearch)
+            function performSearch(event) {
+                var sSearchString = eQuickSearch.value.trim(),
+                    eTitle,
+                    ePageNum,
+                    oRegExp,
+                    iResults = 0;
 
-                .focus(function() {
+                var noResultsEl = document.getElementById("no-results");
+                if (noResultsEl) noResultsEl.style.display = 'none';
+
+                if (sSearchString.length > 0) {
                     aElementsToHide.hide();
 
-                    if (isTouchScreen) {
-                        window.scrollTo(0, eQuickSearch.getBoundingClientRect().top);
+                    var escapedSearchString = escapeRegExp(sSearchString);
+                    var sSearchStringWithDiacritics = applyDiacritics(escapedSearchString, "regex");
+
+                    // Optional apostrophe before every "e" in Italian
+                    if (isItalian) {
+                        sSearchStringWithDiacritics = sSearchStringWithDiacritics.replaceAll("(?:e|", "'?(?:e|");
+                    }
+
+                    try {
+                        oRegExp = new RegExp("(" + sSearchStringWithDiacritics + ")", "ig");
+                    } catch (e) {
+                        oRegExp = new RegExp("(" + escapedSearchString + ")", "ig");
+                    }
+
+                    $(".song-index li").each(function() {
+                        this.style.display = 'none';
+                        eTitle = this.getElementsByTagName("h4")[0];
+                        ePageNum = this.getElementsByClassName("page-number")[0];
+
+                        var titleText = eTitle ? (eTitle.textContent || eTitle.innerText || "") : "";
+                        var pageText = ePageNum ? (ePageNum.textContent || ePageNum.innerText || "") : "";
+                        var fullText = pageText + " " + titleText;
+
+                        // Remove previous highlights
+                        if (eTitle) {
+                            eTitle.innerHTML = eTitle.innerHTML.replace(/<\/?mark>/ig, "");
+                        }
+
+                        var matchedInTitle = oRegExp.test(titleText);
+                        oRegExp.lastIndex = 0;
+                        var matchedInFull = matchedInTitle || oRegExp.test(fullText);
+                        oRegExp.lastIndex = 0;
+
+                        if (matchedInFull) {
+                            if (matchedInTitle && eTitle) {
+                                eTitle.innerHTML = eTitle.innerHTML.replace(oRegExp, "<mark>$1</mark>");
+                            }
+                            this.style.display = 'block';
+                            iResults++;
+                        }
+                    });
+
+                    var code;
+                    if (event) {
+                        if (event.key !== undefined) code = event.key;
+                        else if (event.keyCode !== undefined) code = event.keyCode;
+                    }
+
+                    if ((code === "Enter" || code === 13) && iResults === 1) {
+                        var firstMatch = document.querySelector(".song-index li[style*='block'] a");
+                        if (firstMatch) firstMatch.click();
+                    } else if ((code === "Enter" || code === 13) && event && event.type === 'keyup') {
+                        eQuickSearch.blur();
+                    }
+
+                    if (!iResults && noResultsEl) {
+                        noResultsEl.style.display = 'block';
+                    }
+                } else {
+                    $(".song-index li").each(function() {
+                        var title = this.getElementsByTagName("h4")[0];
+                        if (title) {
+                            title.innerHTML = title.innerHTML.replace(/<\/?mark>/ig, "");
+                        }
+                        this.style.display = 'block';
+                    });
+                    aElementsToHide.show();
+                }
+            }
+
+            $(eQuickSearch)
+                .focus(function() {
+                    if (eQuickSearch.value.trim().length > 0) {
+                        aElementsToHide.hide();
                     }
                 })
-
-                .keyup(function(event) {
-                    var sSearchString = event.target.value,
-                        eTitle,
-                        oRegExp,
-                        iResults = 0;
-
-                    document.getElementById("no-results").style.display = 'none';
-
-                    if (sSearchString.length > 0) {
-                        aElementsToHide.hide();
-
-                        var sSearchStringWithDiacritics = applyDiacritics(sSearchString, "regex");
-
-                        //Optional apostrophe before every "e"
-                        if (isItalian) {
-                            sSearchStringWithDiacritics = sSearchStringWithDiacritics.replaceAll("(?:e|", "'?(?:e|");
-                        }
-
-                        oRegExp = new RegExp("(" + sSearchStringWithDiacritics + ")", "ig");
-
-                        $(".song-index li").each(function() {
-                            this.style.display = 'none';
-                            eTitle = this.getElementsByTagName("h4")[0];
-
-                            //Remove previous highlights to have clean text
-                            eTitle.innerHTML = eTitle.innerHTML.replace(/<\/?mark>/ig, "");
-
-                            if (eTitle.innerText.search(oRegExp) != -1) {
-                                eTitle.innerHTML = eTitle.innerHTML.replace(oRegExp, "<mark>$1</mark>");
-                                this.style.display = 'block';
-                                iResults++;
-                            }
-                        })
-
-                        var code;
-
-                        if (event.key !== undefined)
-                            code = event.key;
-                        else if (event.keyIdentifier !== undefined)
-                            code = event.keyIdentifier;
-                        else if (event.keyCode !== undefined)
-                            code = event.keyCode;
-
-                        if (code == "Enter" && iResults == 1) {
-                            document.querySelector("mark").click();
-                        }
-
-
-                        if (!iResults) {
-                            document.getElementById("no-results").style.display = 'block';
-                        }
-                    } else {
-                        eSongList.innerHTML = eSongList.innerHTML.replace(/<\/?mark>/ig, "");
-                        $(".song-index li").css("display", "block");
-                    }
-                });
+                .on("input keyup search", performSearch);
         },
 
         /**
