@@ -34,7 +34,7 @@ SQL;
     public function readBookSongs(int $idBook): SongsCollection
     {
 		$sql = <<<SQL
-SELECT song.id_song, slug, page, title
+SELECT song.id_song, slug, page, title, lowest_note, highest_note
 FROM song
 WHERE id_book = ?
 AND NOT song.id_song IN (118, 319)

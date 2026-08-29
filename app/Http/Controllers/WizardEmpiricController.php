@@ -32,7 +32,7 @@ final class WizardEmpiricController extends Controller
 
         if (!isset($wizardConfig[$locale]['lowest'])) {
             /** @todo Add HTTP error code */
-            return response()->view('error', [
+            return response()->view('errors.500', [
                 'page_title'  => __('Error'),
                 'error_title' => __('Sorry, the voice measure wizard is not available in ' . config('nt.languages')[$locale]['name']),
             ]);

@@ -72,10 +72,14 @@ class LoginController extends Controller
             );
         }
 
+        $idBook = $bookRepository->readIdBookFromLocale($locale);
+
         if (!$user = $userRepository->readFromEmail($req_email)) {
-            $idBook = $bookRepository->readIdBookFromLocale($locale);
             $user = new User($req_email, null, null, $idBook, null, null, null, new UserPerformance(0, 0));
             $userRepository->save($user, $req->getClientIp());
+        } else {
+            $user->id_book = $idBook;
+            $userRepository->save($user);
         }
 
         // @todo firstTime podría ser un método en vez de un atributo si no se fuerza en otras partes?
@@ -86,7 +90,6 @@ class LoginController extends Controller
             return redirect()->route('user_voice', ['locale' => $locale, 'firstTime' => '1']);
         }
 
-        $idBook = $user->id_book ?? 1;
         return redirect($req->get('redirect') ?? route("book_$idBook"));
     }
 

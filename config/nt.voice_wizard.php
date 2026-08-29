@@ -2,6 +2,31 @@
 
 return array(
 
+	'fr'	=> array(
+		'lowest' => array(
+			'id_song'				=> 519,
+			'override_highest_note'	=> 'F2',
+			'song_contents'			=> <<<SONG
+%0                 %1
+SEIGNEUR, TU ES MON DIEU,
+
+       %0
+JE T'EXALTERAI !
+SONG
+		),
+
+		'highest' => array(
+			'id_song'		=> 569,
+			'song_contents'	=> <<<SONG
+%0                   %1        %2
+SI LE SEIGNEUR NE BÂTIT LA MAISON,
+
+   %3                   %0
+EN VAIN TRAVAILLENT LES BÂTISSEURS.
+SONG
+		),
+	),
+
 	'es'	=> array(
 		'lowest' => array(
 			'id_song'		=> 255,

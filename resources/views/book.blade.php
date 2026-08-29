@@ -49,7 +49,9 @@
 
     <h1>
     @if (session('user')->isLoggedIn())
-    <span class="change-book"><a class="small-button" href="{{ route('user_book', ['locale' => app()->getLocale()]) }}">@lang('Other languages')</a></span>
+    <span class="change-book">
+        <a class="small-button" href="{{ route('user_book', ['locale' => app()->getLocale()]) }}">@lang('Other languages')</a>
+    </span>
     @endif
 
     {{ $current_book->langName() }}

@@ -49,7 +49,8 @@ INSERT INTO `book` (`id_book`, `lang_name`, `details`, `chord_printer`, `locale`
 (2,	'Español',	'Madrid 2014',	'Spanish',	'es',	228),
 (3,	'English',	'London 2013',	'English',	'en',	234),
 (4,	'Português',	'Brasilia 2017',	'Spanish',	'pt',	231),
-(5,	'Italiano',	'Roma 2020',	'Italian',	'it',	236);
+(5,	'Italiano',	'Roma 2020',	'Italian',	'it',	236),
+(6,	'Français',	'Paris 2023',	'French',	'fr',	210);
 
 DROP TABLE IF EXISTS `log_voice_range`;
 CREATE TABLE `log_voice_range` (

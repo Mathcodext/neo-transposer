@@ -85,6 +85,9 @@ button {
 		background-color: #D32F2F;
 	}
 
+.flag-fr {
+	background-image: url(img/flag-fr.png);
+}
 .flag-es {
 	background-image: url(img/flag-es.gif);
 }
@@ -321,6 +324,9 @@ footer {
 	}
 	.lang-it .encourage-feedback {
 		background-image: url(img/encourage-feedback-it.png);
+	}
+	.lang-fr .encourage-feedback {
+		background-image: url(img/encourage-feedback-fr.png);
 	}
 
 	.encourage-feedback h2 {
@@ -645,6 +651,40 @@ a.link-all-report {
   font-size: .85em;
   font-weight: bold;
   text-transform: uppercase;
+}
+.transpose-song h3.song-url {
+  margin: 1em auto 1.5em;
+}
+.transpose-song .song-url-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.8em 1.2em;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.transpose-song .song-url-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  background-color: #fafafa;
+}
+.transpose-song .song-url-img {
+  max-width: 260px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5em;
+  display: block;
+}
+.transpose-song .song-url-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
 }
 .transpose-song h3 span {
 	font-size: .85em;
@@ -2005,6 +2045,9 @@ td.red {
 	}
 	.page-login.lang-it .mkt {
 		background-image: url(img/mkt-it.jpg);
+	}
+	.page-login.lang-fr .mkt {
+		background-image: url(img/mkt-fr-600x315.jpg);
 	}
 	.page-login.lang-en .mkt,
 	.page-login.lang-pt .mkt {

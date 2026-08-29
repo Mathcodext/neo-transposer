@@ -33,6 +33,8 @@ tests/phpmd/phpmd.html
 .phpunit.result.cache
 GeoLite2-Country.mmdb
 **/Thumbs.db*
+**/.DS_Store
+scratch/
 .code-workspace.code-workspace
 .idea
 .vscode

@@ -8,13 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'get']);
 
 //SEO-friendly URLs for books
-$bookUrls = [
-    1 => '/nyimbo-njia-neokatekumenato',
-    2 => '/cantos-camino-neocatecumenal',
-    3 => '/songs-neocatechumenal-way',
-    4 => '/cantos-caminho-neocatecumenal',
-    5 => '/canti-cammino-neocatecumenale',
-];
+$bookUrls = config('nt.book_url');
 
 foreach ($bookUrls as $bookId => $slug) {
     Route::get($slug, [\App\Http\Controllers\BookController::class, 'get'])->defaults('bookId', $bookId)->name('book_' . $bookId);
@@ -59,6 +53,7 @@ Route::prefix('{locale}')
                 'page_class' => 'static-page',
             ]));
         })->name('people-compatible-info');
+
 
         Route::group(['middleware' => NeedsLoginMiddleware::class], function () {
 

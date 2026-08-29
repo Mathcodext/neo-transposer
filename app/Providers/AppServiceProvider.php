@@ -48,7 +48,15 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton(GeoIpResolver::class, function (Application $app) {
-            return $app->make(GeoIpResolverGeoIp2::class, ['reader' => new \GeoIp2\Database\Reader(base_path() . '/' . config('nt.mmdb'))]);
+            $mmdbPath = base_path() . '/' . config('nt.mmdb');
+            if (!file_exists($mmdbPath)) {
+                return new class implements GeoIpResolver {
+                    public function resolve(string $ip): \NeoTransposer\Domain\GeoIp\GeoIpLocation {
+                        return new \NeoTransposer\Domain\GeoIp\GeoIpLocation(new \NeoTransposer\Domain\GeoIp\Country('ES', ['en' => 'Spain']));
+                    }
+                };
+            }
+            return $app->make(GeoIpResolverGeoIp2::class, ['reader' => new \GeoIp2\Database\Reader($mmdbPath)]);
         });
 
         /** @todo Migrar todo a Illuminate y dejar de usar Doctrine */

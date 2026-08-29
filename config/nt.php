@@ -17,9 +17,14 @@ return [
         3 => '/songs-neocatechumenal-way',
         4 => '/cantos-caminho-neocatecumenal',
         5 => '/canti-cammino-neocatecumenale',
+        6 => '/chants-chemin-neocatechumenal',
     ],
 
     'languages' => [
+        'fr' => [
+            'name'     => 'Français',
+            'notation' => 'latin',
+        ],
         'en' => [
             'name'     => 'English',
             'notation' => 'american'
@@ -47,7 +52,7 @@ return [
     'templates_dir'                          => __DIR__ . '/templates',
     'mmdb'                                   => 'GeoLite2-Country.mmdb',
     'test_all_transpositions_expected'       => __DIR__ . '/../tests/testAllTranspositions.expected.json',
-    'css_cache'                              => '332db24297179e87b53376af59e92869',
+    'css_cache'                              => 'f005e1d845270bfeee40e2c2c9393ccc',
 
     'analytics_id'                           => env('NT_ANALYTICS_ID'),
     'sitemap_lastmod'                        => '2026-07-01T10:00Z',
@@ -57,7 +62,7 @@ return [
     'seo_title_suffix'                       => 'Transpose chords',
     'canonical_domain'                       => 'neo-transposer.com',
 
-    'admins' => [env('NT_ADMIN_USERNAME') => ['ROLE_ADMIN', env('NT_ADMIN_PASSWORD')]],
+    'admins' => [(env('NT_ADMIN_USERNAME') ?: 'admin') => ['ROLE_ADMIN', env('NT_ADMIN_PASSWORD')]],
 
     'people_range'                           => ['B1', 'B2'],
 
