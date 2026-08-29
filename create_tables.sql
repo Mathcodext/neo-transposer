@@ -39,11 +39,13 @@ CREATE TABLE `book` (
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_voice_range` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `method` set('wizard','manual','auto_unhappy') NOT NULL,
   `lowest_note` char(3) NOT NULL,
   `highest_note` char(3) NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -83,7 +85,7 @@ CREATE TABLE `song_chord` (
   `id_song` int unsigned NOT NULL,
   `chord` char(6) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `position` int unsigned NOT NULL,
-  UNIQUE KEY `id_song_chord` (`id_song`,`chord`)
+  PRIMARY KEY (`id_song`,`chord`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -106,7 +108,7 @@ CREATE TABLE `transposition_feedback` (
   `pc_status` set('no_people_range_data','already_compatible','wider_than_singer','adjusted_wider','too_low_for_people','too_high_for_people','adjusted_well','not_adjusted_wider') DEFAULT NULL,
   `deviation_from_center` tinyint DEFAULT NULL,
   `centered_score_rate` float DEFAULT NULL,
-  UNIQUE KEY `id_song_id_user` (`id_song`,`id_user`),
+  PRIMARY KEY (`id_song`,`id_user`),
   KEY `id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -123,7 +125,7 @@ CREATE TABLE `unhappy_user` (
   `took_action` datetime DEFAULT NULL,
   `action` char(10) DEFAULT NULL,
   `perf_before_action` decimal(5,4) unsigned DEFAULT NULL,
-  UNIQUE KEY `id_user` (`id_user`)
+  PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
