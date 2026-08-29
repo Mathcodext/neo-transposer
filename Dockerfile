@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends libzip-dev zlib
 
 COPY ./build/apache.conf /etc/apache2/sites-enabled/000-default.conf
 
+COPY ./build/aiven-ca.pem /etc/ssl/certs/aiven-ca.pem
 COPY --from=composer --chown=www-data ${WORKDIR} /var/www/html/
 
 # ----------------------------------------------------------------------------------------------------------------------
