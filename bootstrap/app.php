@@ -12,7 +12,7 @@ $app = Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php'
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $proxies = env('NT_TRUSTED_PROXIES', '');
+        $proxies = env('NT_TRUSTED_PROXIES', '*');
         $middleware->trustProxies(at: $proxies === '*' ? '*' : array_filter(explode(',', $proxies)));
 
         // CSRF verification is disabled on every route by request. The middleware still runs

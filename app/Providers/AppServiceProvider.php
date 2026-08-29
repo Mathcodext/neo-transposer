@@ -80,6 +80,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (config('app.env') === 'production' || request()->header('X-Forwarded-Proto') === 'https') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
         View::share('cssFile', config('app.debug')
             ? 'style.css?nocache=' . time()
             : 'compiled-' . config('nt.css_cache') . '.css');
