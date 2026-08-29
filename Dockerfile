@@ -35,6 +35,23 @@ COPY ./build/aiven-ca.pem /etc/ssl/certs/aiven-ca.pem
 COPY --from=composer --chown=www-data ${WORKDIR} /var/www/html/
 
 # ----------------------------------------------------------------------------------------------------------------------
+FROM nt-common AS dev
+
+COPY ./build/php-dev.ini /usr/local/etc/php/conf.d/neo-transposer-dev.ini
+
+#For some reason, xdebug sneaks his way into the prod image!
+#xdebug is not a core extension so it must be installed with PECL. 3.1 is the highest version supporting PHP 7.3
+#@todo Update XDebug version to latest; ensure it's not in prod image.
+RUN rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && curl -fsSL https://getcomposer.org/download/2.8.1/composer.phar -o /usr/bin/composer.phar \
+    && chmod +x /usr/bin/composer.phar \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+# ----------------------------------------------------------------------------------------------------------------------
 FROM nt-common AS prod
 
 #@todo PROD should have a different Composer run, without dev stuff
@@ -53,19 +70,3 @@ RUN \
   /tmp/newrelic-php5-*/newrelic-install install && \
   rm -rf /tmp/newrelic-php5-* /tmp/nrinstall*
 
-# ----------------------------------------------------------------------------------------------------------------------
-FROM nt-common AS dev
-
-COPY ./build/php-dev.ini /usr/local/etc/php/conf.d/neo-transposer-dev.ini
-
-#For some reason, xdebug sneaks his way into the prod image!
-#xdebug is not a core extension so it must be installed with PECL. 3.1 is the highest version supporting PHP 7.3
-#@todo Update XDebug version to latest; ensure it's not in prod image.
-RUN rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && curl -fsSL https://getcomposer.org/download/2.8.1/composer.phar -o /usr/bin/composer.phar \
-    && chmod +x /usr/bin/composer.phar \
-    && pecl install xdebug \
-    && docker-php-ext-enable xdebug \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends unzip \
-    && rm -rf /var/lib/apt/lists/*
