@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "functions": {
+    "public/index.php": {
+      "runtime": "vercel-php@0.7.0"
+    }
+  },
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/favicon.ico"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.php"
+    }
+  ]
+}
