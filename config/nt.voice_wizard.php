@@ -7,8 +7,8 @@ return array(
 			'id_song'				=> 519,
 			'override_highest_note'	=> 'F2',
 			'song_contents'			=> <<<SONG
-%0                 %1
-SEIGNEUR, TU ES MON DIEU,
+%0               %1
+YAVHÉ, TU ES MON DIEU,
 
        %0
 JE T'EXALTERAI !
@@ -19,10 +19,10 @@ SONG
 			'id_song'		=> 569,
 			'song_contents'	=> <<<SONG
 %0                   %1        %2
-SI LE SEIGNEUR NE BÂTIT LA MAISON,
+SI LE SEIGNEUR NE CONSTRUIT LA MAISON,
 
    %3                   %0
-EN VAIN TRAVAILLENT LES BÂTISSEURS.
+EN VAIN TRAVAILLENT LES CONSTRUCTEURS.
 SONG
 		),
 	),
