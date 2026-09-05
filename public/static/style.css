@@ -2062,7 +2062,9 @@ td.red {
 	.page-login.lang-it .mkt {
 		background-image: url(img/mkt-it.jpg);
 	}
-	.page-login.lang-fr .mkt,
+	.page-login.lang-fr .mkt {
+		background-image: url(img/mkt-fr-600x315.jpg);
+	}
 	.page-login.lang-en .mkt,
 	.page-login.lang-pt .mkt {
 		background-image: url(img/mkt-small.jpg);
@@ -2129,6 +2131,10 @@ td.red {
 		background-size: auto auto;
 		height: auto;
 		padding: 0;
+	}
+	.page-login.lang-fr .mkt {
+		background-image: url(img/mkt-fr-600x315.jpg);
+		background-size: cover;
 	}
 		.page-login .mkt h2 {
 			padding: .5em .2em;
