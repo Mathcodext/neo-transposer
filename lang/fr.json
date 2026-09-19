@@ -48,7 +48,7 @@
     "Songs and psalms of the Neocatechumenal Way in :lang. With Neo-Transposer you can transpose them automatically so they will fit your own voice.": "Chants et psaumes du Chemin Néocatéchuménal en :lang. Avec Neo-Transposer, transposez-les automatiquement pour qu'ils s'adaptent à votre voix.",
     "Other languages": "Autres langues",
     "You have reported the proposed transposition as valid": "Vous avez indiqué que cette transposition convient à votre voix",
-    "Log-in now to transpose automatically the chords of the songs of the Neocatechumenal Way.": "Connectez-vous maintenant pour transposer automatiquement les accords des chants du Chemin Néocatéchuménal.",
+    "Log-in now to transpose automatically the chords of the songs of the Neocatechumenal Way.": "Connectez-vous maintenant pour transposer automatiquement les chants du Chemin Néocatéchuménal.",
     "Download or print <small>All songs report</small>": "Télécharger ou imprimer le <small>rapport de tous les chants</small>",
     "<strong>NEW</strong>: Now that you have transposed the songs, another app can help you to choose the right songs for a celebration. Meet the <strong><a href=\":url\">Lexicon of the Songbook</a></strong>.": "<strong>NOUVEAU</strong> : Maintenant que vous avez transposé les chants, une autre application peut vous aider à choisir les bons chants pour une célébration. Découvrez le <strong><a href=\":url\">Lexique du livret de chants</a></strong>.",
     "Something is going wrong": "Un problème est survenu",
@@ -161,7 +161,7 @@
 
     "/* WIZARD EMPIRIC: HIGHEST NOTE */": "",
     "Step 3: let's find your highest note": "Étape 3 : trouvons votre note la plus aiguë",
-    "Now try to sing the following chorus in <strong class=\"blink\">:song_key :song_capo</strong> with the following chords. Remember: you must sing it <strong>with high voice</strong>, but without doing falsetto! Make a little effort, we are almost done!": "Enfin, essayez de chanter le refrain suivant en <strong class=\"blink\">:song_key :song_capo</strong> avec les accords suivants. N'oubliez pas : vous devez le chanter <strong>d'une voix aiguë</strong>, mais sans voix de tête/fausset ! Encore un petit effort, nous avons presque terminé !",
+    "Now try to sing the following chorus in <strong class=\"blink\">:song_key :song_capo</strong> with the following chords. Remember: you must sing it <strong>with high voice</strong>, but without doing falsetto! Make a little effort, we are almost done!": "Enfin, essayez de chanter le refrain suivant en <strong class=\"blink\">:song_key :song_capo</strong> avec les accords suivants. N'oubliez pas : vous devez le chanter <strong>d'une voix aiguë</strong> ! Encore un petit effort, nous avons presque terminé !",
     "No, it's too high": "Non, c'est trop aigu",
     "According to the voice you have defined, this tone should not be too high for you. Maybe you should go back to the first step and choose better your voice type... or maybe just repeat the test making sure you are singing in the same tone as the guitar.": "D'après la voix définie, cette tonalité ne devrait pas être trop aiguë pour vous. Vous devriez peut-être revenir à la première étape...",
     "That's not possible...": "Ce n'est pas possible...",
